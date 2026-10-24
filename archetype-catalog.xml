@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Archetype 清单：IDEA 通过 Catalog URL 读这个文件，就能在下拉框里列出可用脚手架。
-  本文件由 Nginx 静态托管（docs/dev-ops/nginx/html 挂载到 /usr/share/nginx/html），
-  对应访问地址：http://localhost/archetype-catalog.xml
 
-  jar 本身不在这个目录，而在阿里云云效制品仓库：
-    org/example/ai-agent-base-archetype/1.0.0/
-  所以拉取时还需要 settings.xml 里有该仓库的地址和账号（rdc profile）。
+  访问地址（同一份文件，两处托管）：
+    GitHub Pages（公开，给他人用）：https://guoqule2.github.io/archetype-catalog.xml
+    本地 Nginx（调试用）：          http://localhost/archetype-catalog.xml
+
+  jar 本体位置（org/example/ai-agent-base-archetype/<version>/）：
+    GitHub Pages：https://guoqule2.github.io/  —— 公开可读，settings.xml 里加 guoqule2-pages profile 即可
+    阿里云云效：  私有仓库，需 rdc profile 的地址与账号
 -->
 <archetype-catalog xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-catalog/1.0.0 http://maven.apache.org/xsd/archetype-catalog-1.0.0.xsd"
     xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-catalog/1.0.0"
