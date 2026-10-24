@@ -16,13 +16,12 @@
     <archetypes>
 
         <!-- 本项目的脚手架：六模块 DDD 分层（api / app / domain / trigger / infrastructure / types）
-             1.0.3：① 模块依赖 groupId 参数化 ${groupId}  ② dependencyManagement 版本参数化 ${version}
-                    ③ 清除模板内硬编码的百度 MCP 密钥，改为 ${BAIDU_MCP_API_KEY} / ${BAIDU_MAP_AK}
-                    ④ developers 改为本人信息 -->
+             1.0.4：修复启动失败 —— 模板缺 Agent/skills 目录导致 SkillsTool 抛 FileNotFoundException，
+                    现内置两个真实 skill（commit-message、xfg-ddd-skills），并把路径大小写统一为 Agent/skills -->
         <archetype>
             <groupId>org.example</groupId>
             <artifactId>ai-agent-base-archetype</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
             <description>AI Agent 工程底座：六模块 + ADK 装配链 + Spring AI 多模态补丁</description>
         </archetype>
 
