@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Archetype 清单：IDEA 通过 Catalog URL 读这个文件，就能在下拉框里列出可用脚手架。
+  本文件由 Nginx 静态托管（docs/dev-ops/nginx/html 挂载到 /usr/share/nginx/html），
+  对应访问地址：http://localhost/archetype-catalog.xml
+
+  jar 本身不在这个目录，而在阿里云云效制品仓库：
+    org/example/ai-agent-base-archetype/1.0.0/
+  所以拉取时还需要 settings.xml 里有该仓库的地址和账号（rdc profile）。
+-->
+<archetype-catalog xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-catalog/1.0.0 http://maven.apache.org/xsd/archetype-catalog-1.0.0.xsd"
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-catalog/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <archetypes>
+
+        <!-- 本项目的脚手架：六模块 DDD 分层（api / app / domain / trigger / infrastructure / types）
+             1.0.3：① 模块依赖 groupId 参数化 ${groupId}  ② dependencyManagement 版本参数化 ${version}
+                    ③ 清除模板内硬编码的百度 MCP 密钥，改为 ${BAIDU_MCP_API_KEY} / ${BAIDU_MAP_AK}
+                    ④ developers 改为本人信息 -->
+        <archetype>
+            <groupId>org.example</groupId>
+            <artifactId>ai-agent-base-archetype</artifactId>
+            <version>1.0.3</version>
+            <description>AI Agent 工程底座：六模块 + ADK 装配链 + Spring AI 多模态补丁</description>
+        </archetype>
+
+        <!--
+          以后发布新版本时，在这里追加一条即可（旧条目保留，IDEA 会显示多个可选版本）：
+          <archetype>
+              <groupId>org.example</groupId>
+              <artifactId>ai-agent-base-archetype</artifactId>
+              <version>1.1.0</version>
+              <description>同上，新增 xxx</description>
+          </archetype>
+        -->
+
+    </archetypes>
+</archetype-catalog>
