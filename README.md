@@ -76,7 +76,7 @@ Archetype not found in any of the configured repositories
 mvn archetype:generate \
   -DarchetypeGroupId=org.example \
   -DarchetypeArtifactId=ai-agent-base-archetype \
-  -DarchetypeVersion=1.0.3 \
+  -DarchetypeVersion=1.1.0 \
   -DgroupId=com.yourcompany.ai \
   -DartifactId=my-agent \
   -Dversion=1.0.0 \
@@ -175,7 +175,9 @@ my-agent/
 
 | 版本 | 说明 |
 |---|---|
-| `1.0.3` | **当前版本**。修复模块依赖 groupId / version 参数化，清除硬编码密钥 |
+| `1.1.0` | **当前版本**。ADK 1.13.0 / Spring AI 2.0.2 / Boot 4.1.2；官方 SpringAI、多模态、原规则树和工具适配 |
+| `1.0.4` | 补全内置 Skills 资源，修复模板启动缺失目录 |
+| `1.0.3` | 修复模块依赖 groupId / version 参数化，清除硬编码密钥 |
 | `1.0.2` | 修复 groupId 与 dependencyManagement 版本 |
 | `1.0.1` | 仅修复 groupId（依赖版本仍错，勿用）|
 | `1.0.0` | 初版，依赖坐标不可用 |
@@ -192,7 +194,7 @@ my-agent/
 
 **Q：报 `Unresolved dependency: 'org.example:xxx-api'`**
 
-用了 `1.0.0` 或 `1.0.1`，这两个版本的 pom 有硬编码缺陷，换 `1.0.3`。
+用了 `1.0.0` 或 `1.0.1`，这两个版本的 pom 有硬编码缺陷，换 `1.1.0`。
 
 **Q：报 `Could not resolve placeholder 'DEEPSEEK_API_KEY'`**
 
@@ -217,3 +219,16 @@ my-agent/
 ## License
 
 Apache-2.0
+
+
+## 1.1.0 升级说明（2026-10-31）
+
+- Java 17，ADK 1.13.0、Spring AI 2.0.2、Spring Boot 4.1.2；本次采用最新正式版本，不使用 RC/M 预览版本。
+- AgentNode 直接使用官方 `com.google.adk.models.springai.SpringAI`，移除 MySpringAI/MyMessageConverter 旧补丁；图片输入由官方桥接处理。
+- 保留 ApiNode → ChatModelNode → AgentNode → WorkFlowNode → RunnerNode 的原规则树装配。App/Runner 使用 ADK 新装配 API。
+- 原 xfg-wrench 3.0.0 JAR 内含旧 Boot 类，与 Boot 4 冲突；仅将四个原版规则树源文件放入 types，保留原包名、实现和作者信息，附 Apache 2.0 许可。
+- Spring AI 2 使用 OpenAI SDK；YAML 的 `base-url` 直接包含 API 前缀，例如 `https://api.deepseek.com/v1`。没有额外的 chatBaseUrl 转换函数。
+- MCP/Skills 的 ToolCallback 经 SpringAiToolAdapter 注册到 ADK，工具调用、执行和结果由 ADK 管理，避免升级后工具只声明不执行。
+- 内置 Skills、环境变量密钥配置、旧版本下载地址均保留；未自动开启缓存或压缩。
+
+发布前验证：源工程和从 1.1.0 模板生成的独立工程均完成编译、打包及 3 项本地回归（Boot/MVC/规则树启动，图片与 JSON 工具结果，纯文本 Skills 结果）。本地 HTTP 模拟模型响应，不连接真实模型或 MCP 服务。

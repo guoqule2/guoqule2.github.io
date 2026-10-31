@@ -15,6 +15,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <archetypes>
 
+        <!-- 1.1.0: latest stable ADK/Spring AI/Boot, official SpringAI, original rule tree. -->
+        <archetype>
+            <groupId>org.example</groupId>
+            <artifactId>ai-agent-base-archetype</artifactId>
+            <version>1.1.0</version>
+            <description>AI Agent: ADK 1.13.0 / Spring AI 2.0.2 / Boot 4.1.2, official SpringAI and rule-tree nodes</description>
+        </archetype>
+
+
         <!-- 本项目的脚手架：六模块 DDD 分层（api / app / domain / trigger / infrastructure / types）
              1.0.4：修复启动失败 —— 模板缺 Agent/skills 目录导致 SkillsTool 抛 FileNotFoundException，
                     现内置两个真实 skill（commit-message、xfg-ddd-skills），并把路径大小写统一为 Agent/skills -->
